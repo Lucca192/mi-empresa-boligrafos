@@ -1,111 +1,262 @@
 <!doctype html>
-<html lang="es">
+<html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>FLEXIINK — Bolígrafos borrables</title>
+  <title>FLEXIINK — Erasable Pens</title>
   <style>
-    body{font-family:Arial, sans-serif; margin:0; background:#f6f7fb; color:#1a1a1a;}
-    header{padding:40px 20px; background:linear-gradient(135deg,#4f46e5,#22c55e); color:white;}
-    .wrap{max-width:980px; margin:0 auto;}
-    h1{margin:0 0 10px; font-size:42px;}
-    p{line-height:1.6;}
-    .cta{display:flex; gap:12px; flex-wrap:wrap; margin-top:18px;}
-    .btn{padding:12px 16px; border-radius:12px; border:0; cursor:pointer; font-weight:700;}
-    .btn.primary{background:#111827; color:white;}
-    .btn.secondary{background:white; color:#111827;}
-    main{padding:26px 20px;}
+    :root{
+      --bg:#f5f7fb;
+      --card:#ffffff;
+      --text:#0f172a;
+      --muted:#475569;
+      --border:#e2e8f0;
+      --brand:#1e3a8a;
+      --accent:#0ea5e9;
+      --ok:#16a34a;
+      --shadow: 0 10px 26px rgba(2, 6, 23, .08);
+      --radius:18px;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Noto Sans", "Helvetica Neue", sans-serif;
+      background:var(--bg);
+      color:var(--text);
+    }
+    a{color:inherit; text-decoration:none}
+    .wrap{max-width:980px; margin:0 auto; padding:0 18px;}
+    header{
+      background: linear-gradient(135deg, var(--brand), #0b1226);
+      color:white;
+      padding:42px 0 30px;
+    }
+    .topbar{
+      display:flex; align-items:center; justify-content:space-between;
+      gap:12px; padding:10px 0 18px; opacity:.98;
+    }
+    .logo{
+      display:flex; align-items:center; gap:10px; font-weight:900;
+      letter-spacing:.3px;
+    }
+    .dot{width:10px; height:10px; border-radius:999px; background:var(--accent); display:inline-block}
+    .nav{display:flex; gap:10px; font-size:14px; flex-wrap:wrap}
+    .nav a{padding:6px 10px; border-radius:12px}
+    .nav a:hover{background:rgba(255,255,255,.12)}
+    h1{margin:8px 0 10px; font-size:42px; line-height:1.08;}
+    .lead{max-width:760px; color:#e5e7eb; line-height:1.6; margin:0 0 18px;}
+    .badge{
+      display:inline-flex; align-items:center; gap:8px;
+      padding:8px 12px; border-radius:999px;
+      background:rgba(255,255,255,.12);
+      font-size:12px; font-weight:700; letter-spacing:.2px;
+    }
+    .cta{display:flex; gap:12px; flex-wrap:wrap; margin-top:16px;}
+    .btn{
+      border:0; cursor:pointer; font-weight:800;
+      padding:12px 16px; border-radius:14px;
+      display:inline-flex; align-items:center; gap:10px;
+    }
+    .btn.primary{background:white; color:#0b1226}
+    .btn.secondary{background:rgba(255,255,255,.12); color:white; border:1px solid rgba(255,255,255,.18)}
+    main{padding:26px 0 40px}
     .grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:16px;}
-    .card{background:white; border-radius:18px; padding:16px; box-shadow:0 8px 20px rgba(0,0,0,.06);}
-    .badge{display:inline-block; padding:6px 10px; background:#eef2ff; border-radius:999px; font-size:12px; font-weight:700;}
-    .price{font-size:34px; margin:8px 0;}
-    .small{font-size:13px; color:#4b5563;}
-    footer{padding:20px; text-align:center; color:#6b7280;}
-    ul{margin:10px 0 0 18px;}
-    .highlight{font-weight:700;}
+    .card{
+      background:var(--card);
+      border:1px solid var(--border);
+      border-radius:var(--radius);
+      padding:16px;
+      box-shadow:var(--shadow);
+    }
+    .kicker{font-size:12px; color:var(--muted); font-weight:800; letter-spacing:.35px; text-transform:uppercase}
+    .card h2{margin:6px 0 8px; font-size:18px}
+    .card p{margin:0; color:var(--muted); line-height:1.6}
+    .split{display:grid; grid-template-columns:1.1fr .9fr; gap:16px; margin-top:16px;}
+    @media (max-width:860px){ .split{grid-template-columns:1fr} }
+    .price{
+      font-size:34px; font-weight:950; margin:10px 0 0;
+      letter-spacing:-.6px;
+    }
+    .small{font-size:13px; color:var(--muted); margin-top:10px}
+    input, select, textarea{
+      width:100%;
+      padding:10px 12px;
+      border-radius:14px;
+      border:1px solid var(--border);
+      outline:none;
+      font-size:14px;
+      background:white;
+    }
+    input:focus, select:focus, textarea:focus{border-color:#94a3b8}
+    .formrow{margin:10px 0}
+    .pill{
+      display:inline-block;
+      padding:6px 10px;
+      border-radius:999px;
+      background:#eef2ff;
+      border:1px solid #e0e7ff;
+      font-size:12px;
+      font-weight:800;
+      color:#1e3a8a;
+    }
+    footer{
+      padding:22px 0;
+      color:#64748b;
+      text-align:center;
+      border-top:1px solid var(--border);
+      background: #ffffff80;
+      backdrop-filter: blur(6px);
+    }
+    .checklist{margin:10px 0 0 18px; color:var(--muted)}
+    .checklist li{margin:6px 0}
   </style>
 </head>
 <body>
-  <header>
-    <div class="wrap">
-      <span class="badge">NUEVO • Escritura inteligente</span>
-      <h1>FLEXIINK</h1>
-      <p>
-        Bolígrafos borrables que cuestan <span class="highlight">la mitad</span>, duran <span class="highlight">más</span>,
-        y borran <span class="highlight">de verdad</span>. Incluso con el <span class="highlight">dedo</span>.
-      </p>
-      <div class="cta">
-        <button class="btn primary" onclick="document.getElementById('pedido').scrollIntoView({behavior:'smooth'})">
-          Comprar ahora
-        </button>
-        <button class="btn secondary" onclick="document.getElementById('ventajas').scrollIntoView({behavior:'smooth'})">
-          Ver ventajas
-        </button>
-      </div>
-    </div>
-  </header>
 
-  <main class="wrap">
-    <section id="ventajas" class="grid">
+<header>
+  <div class="wrap">
+    <div class="topbar">
+      <div class="logo"><span class="dot"></span> FLEXIINK</div>
+      <nav class="nav">
+        <a href="#product">Product</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#order">Order</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+
+    <span class="badge">Erasable ink • Clean correction • Student-friendly price</span>
+    <h1>Write confidently. Erase instantly.</h1>
+    <p class="lead">
+      FLEXIINK is an erasable pen designed for real everyday use: smooth writing, long-lasting ink,
+      and a clean erase — even with your finger. Built for school, notes, and quick corrections.
+    </p>
+
+    <div class="cta">
+      <button class="btn primary" onclick="document.getElementById('order').scrollIntoView({behavior:'smooth'})">
+        Place an order
+      </button>
+      <button class="btn secondary" onclick="document.getElementById('product').scrollIntoView({behavior:'smooth'})">
+        Learn more
+      </button>
+    </div>
+  </div>
+</header>
+
+<main>
+  <div class="wrap">
+
+    <section id="product" class="grid">
       <div class="card">
-        <h2>✍️ Escribe suave</h2>
-        <p>Tinta fluida, sin cortes. Perfecto para apuntes rápidos y limpios.</p>
+        <div class="kicker">Performance</div>
+        <h2>✔ Smooth writing</h2>
+        <p>Consistent ink flow for neat notes and fast writing without skipping.</p>
       </div>
+
       <div class="card">
-        <h2>🧼 Borra bien</h2>
-        <p>Borrado limpio sin manchar. Y sí: <b>se puede borrar con el dedo</b>.</p>
+        <div class="kicker">Correction</div>
+        <h2>✔ Clean erase</h2>
+        <p>Erases clearly with minimal smudging. In emergencies, you can erase with your finger.</p>
       </div>
+
       <div class="card">
-        <h2>🕒 Dura más</h2>
-        <p>Más tinta por recarga y escritura más eficiente para que te dure más tiempo.</p>
+        <div class="kicker">Durability</div>
+        <h2>✔ Longer-lasting ink</h2>
+        <p>Optimized ink usage to help each pen last longer — fewer replacements over time.</p>
       </div>
+
       <div class="card">
-        <h2>💸 Mitad de precio</h2>
-        <p>Calidad de “marca” sin pagar de más. Ideal para estudiantes.</p>
+        <div class="kicker">Value</div>
+        <h2>✔ Half the price</h2>
+        <p>School-budget friendly pricing without sacrificing writing quality.</p>
       </div>
     </section>
 
-    <section class="grid" style="margin-top:16px;">
+    <section class="split" id="pricing">
       <div class="card">
-        <h2>📦 Packs</h2>
-        <p class="small">Ejemplos (ajústalo a lo que diga tu trabajo)</p>
-        <div class="price">1,49€</div>
-        <p>Bolígrafo FLEXIINK + goma especial</p>
-        <div class="price">4,99€</div>
-        <p>Pack 4 colores + 2 recargas</p>
+        <div class="kicker">Pricing</div>
+        <h2>Simple packs for students and classrooms</h2>
+        <p class="small">Example prices (adjust them to match your project).</p>
+
+        <div class="grid" style="margin-top:12px">
+          <div class="card" style="box-shadow:none">
+            <span class="pill">Starter</span>
+            <div class="price">€1.49</div>
+            <p>1 FLEXIINK pen + eraser tip</p>
+          </div>
+
+          <div class="card" style="box-shadow:none">
+            <span class="pill">Color Pack</span>
+            <div class="price">€4.99</div>
+            <p>4 colors + 2 refills</p>
+          </div>
+
+          <div class="card" style="box-shadow:none">
+            <span class="pill">Class Pack</span>
+            <div class="price">€12.99</div>
+            <p>10 pens (mixed colors)</p>
+          </div>
+        </div>
       </div>
 
-      <div class="card" id="pedido">
-        <h2>🛒 Pedido rápido</h2>
-        <p>Rellena y listo (esto es simulación para el trabajo).</p>
-        <form onsubmit="event.preventDefault(); alert('¡Pedido enviado! (Simulación para el trabajo)');">
-          <label>Nombre<br><input required style="width:100%;padding:10px;border-radius:12px;border:1px solid #e5e7eb;"></label><br><br>
-          <label>Curso/Clase<br><input required style="width:100%;padding:10px;border-radius:12px;border:1px solid #e5e7eb;"></label><br><br>
-          <label>Pack<br>
-            <select style="width:100%;padding:10px;border-radius:12px;border:1px solid #e5e7eb;">
-              <option>1 bolígrafo</option>
-              <option>Pack 4 colores</option>
-              <option>Pack clase (10 unidades)</option>
-            </select>
-          </label><br><br>
-          <button class="btn primary" type="submit" style="width:100%;">Enviar</button>
-          <p class="small" style="margin-top:10px;">*Para el trabajo: no cobra de verdad, solo muestra la idea.</p>
+      <div class="card" id="order">
+        <div class="kicker">Order form</div>
+        <h2>Quick order (school project demo)</h2>
+        <p class="small">This form is for demonstration only. It does not charge or send real orders.</p>
+
+        <form onsubmit="event.preventDefault(); alert('Order submitted (demo).');">
+          <div class="formrow">
+            <label><b>Full name</b><br />
+              <input required placeholder="e.g., Alex Johnson">
+            </label>
+          </div>
+
+          <div class="formrow">
+            <label><b>Class / Group</b><br />
+              <input required placeholder="e.g., 3rd ESO — B">
+            </label>
+          </div>
+
+          <div class="formrow">
+            <label><b>Pack</b><br />
+              <select>
+                <option>Starter — 1 pen</option>
+                <option>Color Pack — 4 colors</option>
+                <option>Class Pack — 10 pens</option>
+              </select>
+            </label>
+          </div>
+
+          <button class="btn primary" type="submit" style="width:100%; justify-content:center;">
+            Submit order
+          </button>
         </form>
       </div>
     </section>
 
-    <section class="card" style="margin-top:16px;">
-      <h2>❓ ¿Por qué FLEXIINK?</h2>
-      <ul>
-        <li>Porque si te equivocas, <b>borras al momento</b> sin manchar.</li>
-        <li>Porque dura más, así compras menos.</li>
-        <li>Porque cuesta la mitad y es ideal para el instituto.</li>
+    <section class="card" style="margin-top:16px" id="contact">
+      <div class="kicker">Brand story</div>
+      <h2>Why FLEXIINK?</h2>
+      <p>
+        Students make quick mistakes. FLEXIINK was created to make correction fast, clean, and affordable.
+        No mess, no stress — just write, erase, and keep going.
+      </p>
+      <ul class="checklist">
+        <li>Ideal for notes, homework, and planning.</li>
+        <li>Designed to reduce waste by lasting longer.</li>
+        <li>Affordable pricing for everyday school use.</li>
       </ul>
+      <p class="small" style="margin-top:10px;">
+        © 2026 FLEXIINK — Website created for a school project.
+      </p>
     </section>
-  </main>
 
-  <footer>
-    © 2026 FLEXIINK • Web creada para un trabajo escolar.
-  </footer>
+  </div>
+</main>
+
+<footer>
+  FLEXIINK • Erasable pens for everyday study
+</footer>
+
 </body>
 </html>
