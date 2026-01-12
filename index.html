@@ -26,15 +26,24 @@
     }
     a{color:inherit; text-decoration:none}
     .wrap{max-width:980px; margin:0 auto; padding:0 18px;}
-    header{
-      background: linear-gradient(135deg, var(--brand), #0b1226);
-      color:white;
-      padding:42px 0 30px;
-    }
+      header{
+  background: linear-gradient(135deg, var(--brand), #0b1226);
+  color:white;
+  padding:32px 0 56px; /* más aire abajo, menos sensación de soledad */
+}
+
+
     .topbar{
-      display:flex; align-items:center; justify-content:space-between;
-      gap:12px; padding:10px 0 18px; opacity:.98;
-    }
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:16px;
+  padding:20px 0;      /* más espacio vertical */
+  min-height:96px;     /* baja visualmente el logo */
+}
+
+
+
     .logo{
       display:flex; align-items:center; gap:10px; font-weight:900;
       letter-spacing:.3px;
@@ -110,17 +119,22 @@
     .checklist{margin:10px 0 0 18px; color:var(--muted)}
     .checklist li{margin:6px 0}
     .logo-img{
-  height:90px;
+  height:64px;              /* un poco más pequeño */
   width:auto;
   display:block;
-  filter: drop-shadow(0 8px 20px rgba(0,0,0,.35));
+  margin-top:6px;           /* lo baja */
+  margin-bottom:6px;        /* lo conecta visualmente */
+  filter: drop-shadow(0 6px 16px rgba(0,0,0,.25));
 }
+
+
 
 .logo{
   display:flex;
   align-items:center;
-  padding:12px 0;
+  gap:10px;
 }
+
 
 
   </style>
@@ -276,6 +290,7 @@
 
 </body>
 </html>
+
 
 
 
